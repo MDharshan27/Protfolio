@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You !</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="Images/profile-pic.png" type="image/x-icon">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    :root {
+        --gray: #212121;
+        --white: #e6e6e6;
+        --yellow: #c3fe00;
+        --blue: #5285eb;
+        --black: #000000;
+    }
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .animate-line {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s ease var(--delay),
+          transform 0.6s ease var(--delay);
+        will-change: opacity, transform;
+    }
+
+    .animate-line.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    @keyframes rotateCircle {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    .main {
+        min-height: 100vh;
+        background-image: url('Images/thank.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        text-align: center;
+    }
+
+    .overlay-main {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1;
+        background-image: linear-gradient(transparent, transparent, transparent, var(--gray));
+    }
+
+    .main-content {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        padding: 30px;
+        color: var(--white);
+    }
+
+    .badge {
+        display: inline-block;
+        background-color: var(--black);
+        color: var(--yellow);
+        padding: 20px 50px;
+        border-radius: 80px;
+        font-size: 4rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    h2 span {
+        color: var(--yellow);
+    }
+
+    p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        color: var(--white);
+        opacity: 0.9;
+    }
+
+    p span {
+        color: var(--blue);
+    }
+
+    .circle-wrapper {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+    }
+
+    .circle-text {
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        z-index: 1;
+        transform-origin: center;
+        animation: rotateCircle 10s linear infinite;
+        pointer-events: none;
+    }
+
+    .circle-text svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .circle-text text {
+        font-size: 6px;
+        fill: var(--white);
+        letter-spacing: 2px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .circle-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: var(--yellow);
+        box-shadow: 0 0 25px var(--black);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        z-index: 2;
+    }
+
+    .circle-button:hover {
+        transform: translate(-50%, -50%) scale(1.1);
+        background-color: var(--black);
+    }
+
+    .arrow-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        color: var(--black);
+        transform: rotate(45deg);
+        text-decoration: none;
+        transition: color 0.3s ease;
+        width: 100%;
+        height: 100%;
+    }
+
+    .circle-button:hover .arrow-button {
+        color: var(--yellow);
+    }
+
+    @media (max-width: 1024px) {
+      .main-content {
+        padding: 0 40px;
+      }
+
+      .badge {
+        font-size: 3rem;
+        padding: 15px 40px;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      .circle-wrapper,
+      .circle-text {
+        width: 120px;
+        height: 120px;
+      }
+
+      .circle-button {
+        width: 50px;
+        height: 50px;
+      }
+
+      .arrow-button {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        padding: 0 20px;
+      }
+
+      .badge {
+        font-size: 2.5rem;
+        padding: 10px 30px;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+      }
+
+      .circle-wrapper,
+      .circle-text {
+        width: 100px;
+        height: 100px;
+      }
+
+      .circle-button {
+        width: 45px;
+        height: 45px;
+      }
+
+      .arrow-button {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      
+
+      .main-content {
+        padding: 0 20px;
+      }
+
+      .badge {
+        font-size: 2rem;
+        padding: 8px 20px;
+      }
+
+      h2 {
+        font-size: 1rem;
+      }
+
+      p {
+        font-size: 0.85rem;
+      }
+
+      .circle-wrapper,
+      .circle-text {
+        width: 80px;
+        height: 80px;
+      }
+
+      .circle-button {
+        width: 40px;
+        height: 40px;
+      }
+
+      .arrow-button {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="main" id="thankyou">
+    <div class="overlay-main"></div>
+    <div class="main-content">
+      <span class="badge animate-line" style="--delay: 0.2s;">Thank You!</span>
+      <h2 class="animate-line" style="--delay: 0.4s;">Your <span>message</span> has been received.</h2>
+      <p class="animate-line" style="--delay: 0.6s;">I’ll be in touch with you as <span>soon</span> as possible.</p>
+
+      <div class="circle-wrapper animate-line" style="--delay: 0.8s;">
+        <div class="circle-text">
+          <svg viewBox="0 0 100 100">
+            <defs>
+              <path id="circlePath" d="M50,50 m-35,0 a35,35 0 1,1 70,0 a35,35 0 1,1 -70,0" />
+            </defs>
+            <text>
+              <textPath xlink:href="#circlePath" startOffset="0%">
+                ✦ BACK TO HOME ✦ . ✦ BACK TO HOME ✦ 
+              </textPath>
+            </text>
+          </svg>
+        </div>
+        <div class="circle-button">
+          <a href="index.html" class="arrow-button">
+            <i class='bx bx-up-arrow-alt'></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const animatedElements = document.querySelectorAll('.animate-line');
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      animatedElements.forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
